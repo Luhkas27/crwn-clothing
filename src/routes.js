@@ -3,12 +3,16 @@ import { Switch, Route } from "react-router-dom";
 
 import Home from "./pages/home";
 import Shop from "./pages/shop";
+import Header from "./components/header";
 
 const Routes = () => (
-  <Switch>
-    <Route exact path="/" component={Home} />
-    <Route path="/shop" component={Shop} />
-  </Switch>
+  <>
+    <Header />
+    <Switch>
+      <Route exact path="/" component={Home} />
+      <Route path="/shop" component={Shop} />
+    </Switch>
+  </>
 );
 
 export default Routes;
