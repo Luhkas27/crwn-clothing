@@ -37,14 +37,14 @@ export default class SignIn extends Component {
             name="email"
             type="email"
             handleChange={this.handleChange}
-            value={this.state.email}
+            value={email}
             label="email"
             required
           />
           <FormInput
             name="password"
             type="password"
-            value={this.state.password}
+            value={password}
             handleChange={this.handleChange}
             label="password"
             required

@@ -5,7 +5,7 @@ import Home from "./pages/home";
 import Shop from "./pages/shop";
 import Header from "./components/header";
 import Login from "./pages/login";
-import { auth } from "./firebase/utils";
+import { auth, createUserProfileDocument } from "./firebase/utils";
 
 class Routes extends Component {
   state = {
@@ -15,10 +15,23 @@ class Routes extends Component {
   unsubscribleFromAuth = null;
 
   componentDidMount() {
-    this.unsubscribleFromAuth = auth.onAuthStateChanged(user => {
-      this.setState({ currentUser: user });
+    this.unsubscribleFromAuth = auth.onAuthStateChanged(async userAuth => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
 
-      console.log(user);
+        userRef.onSnapshot(snapShot => {
+          this.setState({
+            currentUser: {
+              id: snapShot.id,
+              ...snapShot.data()
+            }
+          });
+
+          console.log(this.state);
+        });
+      } else {
+        this.setState({ currentUser: userAuth });
+      }
     });
   }
 
