@@ -1,6 +1,11 @@
 body {
+  padding: 0;
+  margin: 0;
   font-family: "Poppins";
   padding: 20px 40px;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 a {
